@@ -1,7 +1,7 @@
 ---
-name: deep-e2e-validator
+name: deep-e2e-auditor
 description: >-
-  Deep end-to-end validation of a desktop app (Windows, macOS, Linux - Qt, WPF, WinForms, Electron,
+  Deep end-to-end audit of a desktop app (Windows, macOS, Linux - Qt, WPF, WinForms, Electron,
   Tauri, GTK, native) or a web app/site: a full functional e2e audit from UI to backend and
   integrations, plus an "eyes" audit of what only shows when you look at and use the product -
   inconsistent context menus and dialogs, overloaded cards, broken hierarchy, clipping, contrast,
@@ -11,7 +11,7 @@ description: >-
 argument-hint: "[path-or-url] [--functional|--visual|--both] [--quick]"
 ---
 
-# deep-e2e-validator
+# deep-e2e-auditor
 
 You run a deep audit of the user's product and hand back a report they can fix from. Two halves,
 done together unless the user narrows it:
@@ -55,7 +55,7 @@ Agent briefs to hand to subagents: `templates/brief-functional.md`, `templates/b
 | `visual/annotate.py` | Numbered boxes on a screenshot |
 | `report/build_report.py` | findings/*.jsonl -> `REPORT.md` (tier list) + `gallery.html` (every finding with boxed screenshots, sheets) |
 
-Scripts are run from the skill dir (`~/.claude/skills/deep-e2e-validator` or wherever it is
+Scripts are run from the skill dir (`~/.claude/skills/deep-e2e-auditor` or wherever it is
 installed). Web tools need a one-time `npm run setup` in `scripts/web`; the visual tools need
 Python 3 with Pillow (`pip install pillow`).
 

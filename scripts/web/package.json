@@ -1,8 +1,8 @@
 {
-  "name": "deep-e2e-validator-web",
+  "name": "deep-e2e-auditor-web",
   "private": true,
   "type": "module",
-  "description": "Web and Electron drivers for the deep-e2e-validator skill",
+  "description": "Web and Electron drivers for the deep-e2e-auditor skill",
   "scripts": {
     "setup": "npm install && npx playwright install chromium"
   },

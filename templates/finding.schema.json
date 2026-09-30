@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "deep-e2e-validator finding (one JSON object per line in findings/<area>.jsonl)",
+  "title": "deep-e2e-auditor finding (one JSON object per line in findings/<area>.jsonl)",
   "type": "object",
   "required": ["id", "severity", "kind", "title", "repro", "expected", "actual"],
   "properties": {

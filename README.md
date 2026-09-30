@@ -1,4 +1,4 @@
-# deep-e2e-validator
+# deep-e2e-auditor
 
 A Claude Code skill that runs a deep end-to-end audit of a desktop app (Windows, macOS, Linux) or
 a web app/site. You get a tiered report and an annotated screenshot gallery covering two things:
@@ -14,22 +14,22 @@ a web app/site. You get a tiered report and an annotated screenshot gallery cove
 ## Install
 
 ```sh
-git clone git@github.com:sectapunterx/deep-e2e-validator.git ~/.claude/skills/deep-e2e-validator
-cd ~/.claude/skills/deep-e2e-validator
+git clone git@github.com:sectapunterx/deep-e2e-auditor.git ~/.claude/skills/deep-e2e-auditor
+cd ~/.claude/skills/deep-e2e-auditor
 pip install pillow                           # visual tools + report
 cd scripts/web && npm run setup              # web/Electron drivers: Playwright + Chromium + axe (optional)
 ```
 
-On Windows the path is `%USERPROFILE%\.claude\skills\deep-e2e-validator`.
+On Windows the path is `%USERPROFILE%\.claude\skills\deep-e2e-auditor`.
 
 ## Use
 
 In Claude Code, inside the project you want audited:
 
 ```
-/deep-e2e-validator                      # both halves, whole product
-/deep-e2e-validator --visual             # eyes only
-/deep-e2e-validator https://staging.example.com --quick
+/deep-e2e-auditor                      # both halves, whole product
+/deep-e2e-auditor --visual             # eyes only
+/deep-e2e-auditor https://staging.example.com --quick
 ```
 
 The skill reads the repo first, then asks one round of questions: scope, sandboxes, what must
