@@ -85,6 +85,12 @@ One-time: `cd scripts/web && npm run setup` (Playwright + Chromium + axe).
 - **Backend / storage**: read the files the app writes (JSON/SQLite/logs) after each action; hit
   its local API; a fake server for integrations (record/replay) when no sandbox exists.
 
+## Guard first (before any launch)
+Snapshot the real data location and set a guard env var that points the app at a sandbox even if
+a command forgets the isolation flag (00-safety.md "Isolation must fail closed"). Prove the guard:
+launch the app bare once with only the guard set and check it wrote to the sandbox. The first
+lines of HARNESS.md are the guard lines every agent must run in every shell.
+
 ## HARNESS.md (write it; agents follow it literally)
 - Build commands, binary paths, how to make a per-agent copy/profile.
 - Launch command (fresh / seeded / scale), env vars that matter, how to stop.

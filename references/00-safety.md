@@ -10,6 +10,20 @@ copied verbatim into every agent brief.
   Find which one works in Intake and prove it in Harness *before* any agent starts.
 - If the app has no isolation mechanism, stop and tell the user; propose one (e.g. `HOME`/`APPDATA`
   redirection that the app honours, a portable build, a VM) rather than running against real data.
+- **Isolation must fail closed, not depend on every command being typed right.** A flag on the
+  command line is one typo away from the real profile (seen in the pilot: a CLI test ran the binary
+  with a stray argument and no `--data-dir`, the app ignored the argument and migrated the user's
+  real file). So, before any agent starts:
+  1. **Snapshot** the real data location (copy it into the run dir) and record hashes + mtimes in
+     `run.json` - even when the plan says it will never be touched.
+  2. **Guard env**: if the app honours an env var for its data location (`APP_DATA_DIR`,
+     `XDG_*`, `HOME`, `APPDATA` redirection), every agent exports it to a throwaway dir in *every*
+     shell before running anything, so a bare launch lands in a sandbox too. Put the exact line at
+     the top of HARNESS.md.
+  3. **CLI / argument tests** (unknown flags, positional args, empty values) run on a copy of the
+     binary in a throwaway location, with the guard env set, never on the shared build.
+  4. **Integrity check at the end** (and whenever an agent reports trouble): compare the real data
+     location to the snapshot; report any difference to the user, restore only with their OK.
 - A copy of real data (for migration / scale / "does my actual profile still load") only with the
   user's explicit permission, read-only at the source: copy first, then work on the copy.
 - A hard precondition before touching any data location: no instance of the app is running against

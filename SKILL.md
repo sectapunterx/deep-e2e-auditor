@@ -66,6 +66,8 @@ Python 3 with Pillow (`pip install pillow`).
    user wants back. Ask only what the code and docs cannot tell you - in one round of questions.
    Create the run dir `<project>/.deep-e2e/runs/<YYYY-MM-DD>-<n>/` (add `.deep-e2e/` to
    `.git/info/exclude`, never to a tracked file) and write `run.json` + `HARNESS.md` there.
+   Snapshot the user's real data location into the run dir (hashes + mtimes in `run.json`) and set
+   up a fail-closed guard env var (00-safety.md) - before anything is launched.
 2. **Harness** (`02-harness.md`). Prove you can launch the target isolated, capture it, drive it
    (click, right-click, type, keys), and read its structure (UIA/AX/AT-SPI tree or DOM). Prefer the
    framework's own test driver for behaviour (Qt Quick Test with the real main window, Playwright
@@ -84,7 +86,8 @@ Python 3 with Pillow (`pip install pillow`).
 6. **Report.** Contact sheets for every surface group, then `build_report.py`. Give the user the
    tier counts, the top S/A items in a few lines, and the paths to `REPORT.md` and `gallery.html`
    (publish the gallery as an Artifact if the user wants a link). Leave everything you started
-   stopped and every sandbox cleaned up; list what you could not cover and why.
+   stopped and every sandbox cleaned up; compare the real data location with the phase-0 snapshot
+   and report any difference; list what you could not cover and why.
 
 `--quick`: one functional agent for the riskiest areas + the surface census, consistency sheets and
 one persona session; same report format.
