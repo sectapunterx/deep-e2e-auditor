@@ -87,8 +87,15 @@ def md(run, findings, title, lang, meta):
     t = TIER_TEXT[lang]
     counts = {k: sum(1 for f in findings if f.get("severity") == k) for k in TIERS}
     L = [f"# {title}", ""]
+    def show(v):
+        if isinstance(v, list):
+            return ", ".join(str(x) for x in v)
+        if isinstance(v, dict):
+            return ", ".join(f"{k}: {x}" for k, x in v.items())
+        return str(v)
+
     if meta:
-        L += [" · ".join(f"**{k}:** {v}" for k, v in meta.items() if k != "notes"), ""]
+        L += [" · ".join(f"**{k}:** {show(v)}" for k, v in meta.items() if k != "notes"), ""]
         if meta.get("notes"):
             L += [meta["notes"], ""]
     total = "Итог" if lang == "ru" else "Total"
@@ -96,6 +103,11 @@ def md(run, findings, title, lang, meta):
     verified = sum(1 for f in findings if f.get("verdict") == "confirmed")
     L += [(f"Перепроверено повторным прогоном: {verified}." if lang == "ru" else f"Re-verified by an independent re-run: {verified}."), ""]
     L += [("Галерея со скриншотами: `gallery.html`." if lang == "ru" else "Screenshots for every finding: `gallery.html`."), ""]
+    # Hand-written sections (how it was tested, top items, what works, not covered, cleanup) live in
+    # RUN/extra.md so a rebuild never loses them.
+    extra = os.path.join(run, "extra.md")
+    if os.path.exists(extra):
+        L += [open(extra, encoding="utf-8").read().rstrip(), "", "---", ""]
     for k in TIERS:
         group = [f for f in findings if f.get("severity") == k]
         if not group:

@@ -38,7 +38,7 @@ python scripts/report/build_report.py .deep-e2e/runs/2026-09-30-1 --title "App 1
 ```
 `REPORT.md` = tier list (S -> D tables: id, kind, defect, where; ✔ = re-verified) + counts;
 `gallery.html` = every finding with its screenshots, boxes drawn, filters by tier and kind, all
-contact sheets at the end. Then add by hand to REPORT.md, above the tables:
+contact sheets at the end. Write the hand-written part to `RUN/extra.md` (the build inserts it above the tables, so rebuilds keep it):
 - **How it was tested** (build, platforms, sizes/themes/locales, sandboxes, agents, number of probes
   and screenshots);
 - **Top items** - the S and A findings in one line each;
