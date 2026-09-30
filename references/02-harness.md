@@ -36,6 +36,12 @@ Stop-Process -Id $procId
   them. Two limits: key *chords* (Ctrl+K) need `send` mode because posted modifiers do not change
   key state; and a popup that opens "at the pointer" lands at the *real* cursor position - judge
   popup placement only in `send` mode (ask the user first) or place it via the app's own API.
+- Posted *keys* reach only an active window on some toolkits: Qt ignores posted Esc/arrows/letter
+  shortcuts while its window is inactive (clicks still work, WM_CHAR text mostly works). Plan
+  keyboard-path testing through the framework driver (Qt Quick Test with the real main window) and
+  use the OS driver for pixels; say in findings which driver produced them. A finding that only
+  shows under posted input (e.g. a panel that "doesn't open") is `plausible` until reproduced with
+  real input or the framework driver.
 - Menus/popups of native toolkits are separate top-level windows; `capture.ps1` composites all of
   the process's visible windows. Qt Quick / web-based UIs draw popups inside the main window.
 - Qt Quick exposes only items with `Accessible.*` set (plus Controls) to UIA - a card without an
