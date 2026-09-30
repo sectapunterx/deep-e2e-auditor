@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "deep-e2e-validator finding (one JSON object per line in findings/<area>.jsonl)",
+  "type": "object",
+  "required": ["id", "severity", "kind", "title", "repro", "expected", "actual"],
+  "properties": {
+    "id": {"type": "string", "description": "AREA-N, e.g. BOARD-3, VIS-12. Unique within the run."},
+    "severity": {"enum": ["S", "A", "B", "C", "D"], "description": "S data loss/security/crash · A core feature broken · B visible bug or real UX defect · C minor/polish/edge · D nit"},
+    "kind": {"enum": ["functional", "visual", "ux", "a11y", "perf"]},
+    "area": {"type": "string", "description": "The area the agent covered (board, calendar, settings, checkout, …)"},
+    "surface": {"type": "string", "description": "Where it is seen: 'card context menu', 'Settings → Data', '/checkout @375px'"},
+    "title": {"type": "string", "description": "One line: what is wrong, not what to do"},
+    "repro": {"type": "array", "items": {"type": "string"}, "description": "Numbered steps with exact inputs"},
+    "expected": {"type": "string"},
+    "actual": {"type": "string"},
+    "why": {"type": "string", "description": "User impact, when not obvious"},
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "shots": {"type": "array", "items": {"type": "string"}, "description": "Screenshot paths relative to the run dir"},
+        "logs": {"type": "array", "items": {"type": "string"}},
+        "probe": {"type": "string", "description": "The test/probe file that shows it"},
+        "measure": {"type": "string", "description": "A number: '1.9:1 contrast', '412 ms per keystroke', '11 chips on a 240px card'"}
+      }
+    },
+    "boxes": {
+      "type": "array",
+      "description": "Regions to box on screenshots (pixel coords in that image)",
+      "items": {"type": "object", "required": ["img", "x", "y", "w", "h"],
+                "properties": {"img": {"type": "string"}, "x": {"type": "number"}, "y": {"type": "number"},
+                               "w": {"type": "number"}, "h": {"type": "number"}, "label": {"type": "string"}}}
+    },
+    "code_refs": {"type": "array", "items": {"type": "string"}, "description": "file:line where the cause is, if found"},
+    "fix_hint": {"type": "string"},
+    "verdict": {"enum": ["unverified", "confirmed", "plausible", "rejected"], "description": "Set by the verification pass"},
+    "duplicate_of": {"type": "string"}
+  }
+}
