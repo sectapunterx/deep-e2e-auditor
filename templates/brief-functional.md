@@ -7,7 +7,8 @@ exercising it through the real UI down to what it stores and sends. Report, do n
 
 Read first, in full: `<run>/HARNESS.md` (how to build, launch isolated, drive, capture),
 `<skill>/references/00-safety.md` (rules - obey them exactly), `<skill>/references/03-functional.md`
-(method and probe patterns). `<run>/run.json` names the sandboxes and what must never be touched.
+(method and probe patterns), `<skill>/references/03b-idiot-test.md` (if the user can do it wrong,
+they will - apply its ten moves to your area's flows). `<run>/run.json` names the sandboxes and what must never be touched.
 
 Your area: <features, code paths, data it touches - from the area map>.
 Known issues to re-check (not re-find): <list or "none">.

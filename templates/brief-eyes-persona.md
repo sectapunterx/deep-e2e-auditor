@@ -5,6 +5,10 @@ week, lives in the terminal">** using **<app>** for the first time today. Your g
 <3-5 concrete goals, e.g. "triage the 20 new tickets", "plan tomorrow in the calendar", "write the
 retro notes and link two tickets", "find last week's decision about X">.
 
+Be the user who does it wrong: follow every on-screen hint literally wherever focus happens to be,
+press keys before clicking into fields, hit Esc and Enter twice, wander off mid-edit. When you get
+stuck, write down how many presses it took to get back and whether the mouse was needed.
+
 Use only the UI, the way this person would - no source code, no APIs, no reading the docs unless
 the persona would. Read `<run>/HARNESS.md` only for how to launch, drive and capture, and
 `<skill>/references/00-safety.md` (obey exactly). Isolation: <data dir / profile>, seeded with

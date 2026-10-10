@@ -6,6 +6,9 @@ a web app/site. You get a tiered report and an annotated screenshot gallery cove
 - **Functional:** every feature is exercised through the real UI down to storage, network and
   integrations. Parallel area agents run in isolated sandboxes, and every serious finding is
   re-checked independently.
+- **Idiot test:** if the user can do it wrong, they will. Every on-screen hint is followed
+  literally in every focus state, every global key is pressed with every layer open, actions are
+  doubled, abandoned half-way and done out of order, and every state must have a keyboard way back.
 - **Eyes:** every surface is captured in every state, and same-kind surfaces are compared side by
   side. This catches the context menu that doesn't match the others and the overloaded card. It
   also includes a heuristic walkthrough, pixel measurements, and persona sessions that use the

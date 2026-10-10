@@ -33,6 +33,7 @@ its features, the code that implements them, and the data they touch.
   COUNT/UNTIL after a split; reminders for occurrences.
 - **Input**: very long text, no spaces, emoji, RTL, Cyrillic, pasted rich text, empty, whitespace
   only; values at and past limits; locale decimal separators; typed dates in several formats.
+- **Misuse**: the whole idiot test lives in `03b-idiot-test.md` and runs alongside this phase.
 - **Keyboard**: every shortcut in text fields, in menus, behind modals; Esc order (innermost first);
   Tab order reaches everything; focus visible; Enter in dialogs.
 - **Concurrency/async**: double-click submit; action during a sync/load; slow/offline network; a

@@ -4,7 +4,7 @@
 | Tier | Meaning | Examples |
 |---|---|---|
 | S | data loss, security, crash, corruption | save overwrites the real file; undo deletes another user's record; token in logs |
-| A | a core feature is broken or unusable | drag in the week view snaps back; editor loses typed text; search misses most content |
+| A | a core feature is broken or unusable | drag in the week view snaps back; editor loses typed text; search misses most content; a keyboard trap or a key that acts on a hidden layer (keyboard-first product) |
 | B | a visible bug or a real UX defect on a normal path | context menu styled unlike the others; card so dense its state is unreadable; Esc closes the wrong layer |
 | C | minor, polish, edge case | 2 px misalignment; English word in the Russian UI; tooltip clipped at the edge |
 | D | nit | wording, a slightly off colour on a rarely seen surface |
