@@ -34,6 +34,10 @@ its features, the code that implements them, and the data they touch.
 - **Input**: very long text, no spaces, emoji, RTL, Cyrillic, pasted rich text, empty, whitespace
   only; values at and past limits; locale decimal separators; typed dates in several formats.
 - **Misuse**: the whole idiot test lives in `03b-idiot-test.md` and runs alongside this phase.
+- **Use**: what only shows while working - every element kind x every gesture, edits across the
+  edges between elements, mode switches with input pending, the screen after the timers - is the
+  use-it audit (`03c-use-it.md`), also alongside this phase. A feature that "opened and accepted
+  input" is not covered until that audit has been through it.
 - **Keyboard**: every shortcut in text fields, in menus, behind modals; Esc order (innermost first);
   Tab order reaches everything; focus visible; Enter in dialogs.
 - **Concurrency/async**: double-click submit; action during a sync/load; slow/offline network; a

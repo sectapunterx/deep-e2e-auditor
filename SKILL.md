@@ -5,8 +5,11 @@ description: >-
   Tauri, GTK, native) or a web app/site: a full functional e2e audit from UI to backend and
   integrations, plus an "eyes" audit of what only shows when you look at and use the product -
   inconsistent context menus and dialogs, overloaded cards, broken hierarchy, clipping, contrast,
-  states nobody designed - and an "idiot test" (misuse audit: if the user can do it wrong, they
-  will; hints followed literally, keys pressed in the wrong layer, keyboard traps). Parallel area agents, isolated sandboxes, independent re-verification,
+  states nobody designed - an "idiot test" (misuse audit: if the user can do it wrong, they
+  will; hints followed literally, keys pressed in the wrong layer, keyboard traps) and a "use it"
+  work audit (the product used for real, long and in detail: every element kind x every gesture,
+  edits across the edges between elements, mode switches with input pending, the screen checked
+  again after autosave/debounce timers - the bugs only someone working meets). Parallel area agents, isolated sandboxes, independent re-verification,
   and a tiered report with an annotated screenshot gallery. Use for "e2e test the app", "audit the
   UI/UX", "find everything that is broken", "QA pass before release", "deep test my site".
 argument-hint: "[path-or-url] [--functional|--visual|--both] [--quick]"
@@ -23,6 +26,11 @@ done together unless the user narrows it:
   focus state, every global key pressed with every layer open, every action done twice, half-way
   and in the wrong order, and every state checked for a keyboard way back. Mandatory in every full
   and acceptance run (`references/03b-idiot-test.md`).
+- **Use it** - some bugs exist only for someone who is working: the product used for real on a
+  document/board someone has been working on, with every element kind clicked every way, every
+  edge between two elements crossed, every mode switched with input pending, and the screen looked
+  at again after every timer. Mandatory in every full and acceptance run
+  (`references/03c-use-it.md`).
 - **Eyes** - the product looked at and used like a person would: every surface captured in every
   state, compared with its siblings, judged against design heuristics and measured. This is what a
   functional audit misses: a context menu styled unlike the others, a card with eleven chips, a
@@ -39,10 +47,11 @@ Read these before the phase that needs them (they are the method; this file is t
 | 1 Harness (how to drive and capture the target) | `references/02-harness.md` |
 | 2 Functional audit | `references/03-functional.md` |
 | 2b Idiot test (misuse) | `references/03b-idiot-test.md` |
+| 2c Use it (work audit) | `references/03c-use-it.md` |
 | 3 Eyes audit | `references/04-eyes.md` |
 | 4 Verify + report | `references/05-report.md` |
 
-Agent briefs to hand to subagents: `templates/brief-functional.md`, `templates/brief-idiot.md`, `templates/brief-eyes-surface.md`,
+Agent briefs to hand to subagents: `templates/brief-functional.md`, `templates/brief-idiot.md`, `templates/brief-use.md`, `templates/brief-eyes-surface.md`,
 `templates/brief-eyes-persona.md`, `templates/brief-verify.md`. Finding format:
 `templates/finding.schema.json`.
 
@@ -87,6 +96,9 @@ Python 3 with Pillow (`pip install pillow`).
    isolated profile, and writes `findings/<area>.jsonl` + screenshots under `shots/<area>/`.
    Idiot-test agents (`templates/brief-idiot.md`) take surface groups too; the instruction
    inventory and the key x layer matrix are built before they start and split between them.
+   Use-it agents (`templates/brief-use.md`) take the surfaces where users make or change things
+   (editors, grids, boards, calendars, forms), one or two each, each with a fixture holding every
+   element kind and the list of timers to wait out.
    Size the fan-out to the machine (builds and GUI sessions are heavy; 4-8 agents is typical).
 5. **Verify** (`05-report.md`). Every S and A finding, and every visual finding that rests on a
    judgement, is re-run by an agent that did not find it: confirmed / plausible / rejected.
@@ -98,7 +110,8 @@ Python 3 with Pillow (`pip install pillow`).
    and report any difference; list what you could not cover and why.
 
 `--quick`: one functional agent for the riskiest areas + the idiot test on the main flows + the
-surface census, consistency sheets and one persona session; same report format.
+use-it audit on the one or two surfaces the product is for + the surface census, consistency
+sheets and one persona session; same report format.
 
 ## Non-negotiables
 
@@ -113,4 +126,8 @@ surface census, consistency sheets and one persona session; same report format.
   screenshot with a box, a number). Visual findings always carry a screenshot.
 - If the user can do it wrong, they will: a run without the idiot test is not a full run, and no
   acceptance run passes while a keyboard trap or a misfire on a hidden layer is open.
+- Some bugs exist only for someone who is working: "it opened and I could type" is not coverage.
+  Every surface where users make or change things gets the use-it audit - every element kind x
+  every gesture, the edges, the transitions, the screen after the timers - and every cell is
+  passed, failed, or marked not covered with the reason (synthetic input is a reason, not a pass).
 - Severity is about user impact, not about how easy it is to fix (`05-report.md` has the scale).

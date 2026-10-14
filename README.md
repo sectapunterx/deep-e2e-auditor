@@ -9,6 +9,10 @@ a web app/site. You get a tiered report and an annotated screenshot gallery cove
 - **Idiot test:** if the user can do it wrong, they will. Every on-screen hint is followed
   literally in every focus state, every global key is pressed with every layer open, actions are
   doubled, abandoned half-way and done out of order, and every state must have a keyboard way back.
+- **Use it:** some bugs exist only for someone who is working. The product is used for real, on
+  content holding every kind of element: every element is clicked every way, every edge between
+  two elements is crossed (Backspace, Delete, selection, copy), every mode is switched with input
+  still pending, and the screen is checked again after autosave and debounce timers fire.
 - **Eyes:** every surface is captured in every state, and same-kind surfaces are compared side by
   side. This catches the context menu that doesn't match the others and the overloaded card. It
   also includes a heuristic walkthrough, pixel measurements, and persona sessions that use the

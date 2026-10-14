@@ -41,7 +41,9 @@ Stop-Process -Id $procId
   keyboard-path testing through the framework driver (Qt Quick Test with the real main window) and
   use the OS driver for pixels; say in findings which driver produced them. A finding that only
   shows under posted input (e.g. a panel that "doesn't open") is `plausible` until reproduced with
-  real input or the framework driver.
+  real input or the framework driver. The same goes the other way: a pointer gesture that
+  *works* under posted input is not coverage for the use-it matrix (03c-use-it.md, move 9) - a
+  scroll area or a nested handler can take a real press that a posted message never reaches.
 - Menus/popups of native toolkits are separate top-level windows; `capture.ps1` composites all of
   the process's visible windows. Qt Quick / web-based UIs draw popups inside the main window.
 - Qt Quick exposes only items with `Accessible.*` set (plus Controls) to UIA - a card without an

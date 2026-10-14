@@ -4,8 +4,8 @@
 | Tier | Meaning | Examples |
 |---|---|---|
 | S | data loss, security, crash, corruption | save overwrites the real file; undo deletes another user's record; token in logs |
-| A | a core feature is broken or unusable | drag in the week view snaps back; editor loses typed text; search misses most content; a keyboard trap or a key that acts on a hidden layer (keyboard-first product) |
-| B | a visible bug or a real UX defect on a normal path | context menu styled unlike the others; card so dense its state is unreadable; Esc closes the wrong layer |
+| A | a core feature is broken or unusable | drag in the week view snaps back; editor loses typed text; typed text vanishes from sight after an autosave; one element kind (a table, a code block) cannot be edited; Backspace/Delete/selection stops dead at the edge between two elements; search misses most content; a keyboard trap or a key that acts on a hidden layer (keyboard-first product) |
+| B | a visible bug or a real UX defect on a normal path | context menu styled unlike the others; card so dense its state is unreadable; Esc closes the wrong layer; the caret lands away from where the user clicked; the edited item jumps when a timer fires |
 | C | minor, polish, edge case | 2 px misalignment; English word in the Russian UI; tooltip clipped at the edge |
 | D | nit | wording, a slightly off colour on a rarely seen surface |
 Visual/UX defects are B when users meet them on the main path every day (overloaded cards,
@@ -28,6 +28,8 @@ Update the JSONL in place (the verifier sets `verdict`); never delete a finding 
   shots/<area-or-group>/...    screenshots (relative paths in findings)
   sheets/*.png                 contact sheets
   personas/<name>.md           persona transcripts
+  probes/use/<surface>-matrix.md  element x gesture matrix (passed / failed / not covered)
+  probes/use/<surface>-log.md     the use-it work log (the repro for sequence bugs)
   probes/<area>/...            probe/test files and their logs
   REPORT.md  gallery.html  annotated/    (generated)
 ```
@@ -42,7 +44,8 @@ contact sheets at the end. Write the hand-written part to `RUN/extra.md` (the bu
 - **How it was tested** (build, platforms, sizes/themes/locales, sandboxes, agents, number of probes
   and screenshots);
 - **Top items** - the S and A findings in one line each;
-- **What works** (selected; so coverage is visible) and **Not covered** (and why);
+- **What works** (selected; so coverage is visible) and **Not covered** (and why) - including the
+  use-it matrix cells marked not covered (synthetic input, no fixture for an element kind);
 - **Cleanup** - what was created in sandboxes and removed, what is left for the user.
 
 ## Tell the user
